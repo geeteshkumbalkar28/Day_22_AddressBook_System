@@ -34,7 +34,7 @@ public class RegexUtil {
         if (checkCondition == false) {
             System.out.println();
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println("Enter the first Word in first name should be capital");
+            System.out.println("Enter the Valid email id");
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
 

@@ -23,6 +23,8 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
     }
     public void insertContacts()
     {
+
+        AddressBookImp addressBookImp = new AddressBookImp();
         RegexUtil regexUtil = new RegexUtil();
         Contacts contacts = new Contacts();
         System.out.println("Enter the first name");
@@ -52,20 +54,50 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
 
         if(regexUtil.isStartWithCapitalLatter(contacts.getFirstName()))
         {
-            if(regexUtil.isCheckEmailId(contacts.getEmail()))
+            if(findDuplication(contacts.getFirstName()))
             {
-                String mobileNumber = contacts.getPhoneNumber()+" ";
-                if(regexUtil.isCheckMobileNumber(mobileNumber))
-                {
 
-                    linkedList.add(contacts);
-                    System.out.println("Contact Added Succesfully in Address Book");
+                if(regexUtil.isCheckEmailId(contacts.getEmail()))
+                {
+                    String mobileNumber = contacts.getPhoneNumber()+"";
+                    if(regexUtil.isCheckMobileNumber(mobileNumber))
+                    {
+
+                        linkedList.add(contacts);
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        System.out.println("Contact Added Succesfully in Address Book");
+                        System.out.println("-------------------------------------------");
+
+                    }
                 }
             }
+            else
+            {
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("First name information allready exist");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            }
+
         }
 
 
     }
+    private static boolean findDuplication(String input)
+    {
+
+        for(int i=0; i<linkedList.size();i++)
+        {
+            if((linkedList.get(i).getFirstName()).equals(input))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void showAllContacts()
     {
         for(int counter=0; counter<linkedList.size(); counter++)
