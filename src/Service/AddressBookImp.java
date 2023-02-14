@@ -21,6 +21,7 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
         System.out.println("3 : Edit existing contact person using their name");
         System.out.println("4 : Delete existing contact person using their name");
         System.out.println("5 : Ability to search Person in a City or State");
+        System.out.println("6 :Ability to view Persons by City or State ");
         System.out.println("9 : Terminate the application");
     }
     public void insertContacts()
@@ -224,7 +225,91 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
         }
         return flag;
     }
+    private static boolean searchByState(String input)
+    {
+        boolean flag = true;
+        for(int counter=0; counter<linkedList.size();counter++)
+        {
+            if((linkedList.get(counter).getState()).equals(input))
+            {
+                  flag = false;
+                  break;
+            }
+
+        }
+        return flag;
+    }
+    private static boolean searchByCity(String input)
+    {
+        boolean flag =true;
+        for(int counter=0; counter<linkedList.size();counter++)
+        {
+            if((linkedList.get(counter).getCity()).equals(input))
+            {
+                flag = false;
+                break;
+            }
+
+        }
+        return flag;
+    }
     public void searchPersonBystateOrCity()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter state or city that you want to search person information (State / City)");
+        String choice = scan.next();
+        if(choice.equals("State")||(choice.equals("state")))
+        {
+            System.out.println("Enter state that you want search person information :");
+            choice = scan.next();
+            if(searchByState(choice))
+            {
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("you give the State name to search that person is not present in address book ");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            }
+            else
+            {
+                System.out.println();
+
+                System.out.println("---------------------------------------------------------------");
+                System.out.println("you give the State name to search that person present in address book ");
+                System.out.println("---------------------------------------------------------------");
+
+            }
+
+        }
+        else if((choice.equals("City"))||(choice.equals("city")))
+        {
+            System.out.println("Enter city that you want search person information :");
+            choice = scan.next();
+            if(searchByCity(choice))
+            {
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("you give the city name to search that person  is not present in address book ");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            }
+            else
+            {
+                System.out.println();
+
+                System.out.println("---------------------------------------------------------------");
+                System.out.println("you give the city name to search that person present in address book ");
+                System.out.println("---------------------------------------------------------------");
+
+            }
+
+        }
+        else
+        {
+            System.out.println("Enter the valid choice");
+        }
+    }
+    public void displayPersonBystateOrCity()
     {
         Scanner scan = new Scanner(System.in);
 
@@ -238,7 +323,7 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
             {
                 System.out.println();
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.out.println("you give the State name to search that is not in address book ");
+                System.out.println("you give the State name to view that is not in address book ");
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             }
@@ -251,7 +336,7 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
             {
                 System.out.println();
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.out.println("you give the State name to search that is not in address book ");
+                System.out.println("you give the State name to view that is not in address book ");
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
 

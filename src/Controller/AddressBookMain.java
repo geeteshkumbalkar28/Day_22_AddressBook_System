@@ -48,8 +48,14 @@ public class AddressBookMain
                 case 5:
                     addressBookImp.searchPersonBystateOrCity();
                 break;
+                case 6:
+                    addressBookImp.displayPersonBystateOrCity();
+                break;
                 case 9:
                     choice=0;
+                    System.out.println();
+                    System.out.println("---------------------------Thank you--------------------------");
+                    System.out.println();
                 break;
             }
 
