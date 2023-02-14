@@ -45,6 +45,9 @@ public class AddressBookMain
                 case 4:
                    addressBookImp.removeContactByName();
                 break;
+                case 5:
+                    addressBookImp.searchPersonBystateOrCity();
+                break;
                 case 9:
                     choice=0;
                 break;

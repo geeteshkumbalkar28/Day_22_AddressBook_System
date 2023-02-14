@@ -3,6 +3,7 @@ import Interface.iAddressBook;
 import Model.Contacts;
 import Utility.RegexUtil;
 
+import javax.script.ScriptContext;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
         System.out.println("2 : Display all address in contact book");
         System.out.println("3 : Edit existing contact person using their name");
         System.out.println("4 : Delete existing contact person using their name");
+        System.out.println("5 : Ability to search Person in a City or State");
         System.out.println("9 : Terminate the application");
     }
     public void insertContacts()
@@ -56,20 +58,24 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
         {
             if(findDuplication(contacts.getFirstName()))
             {
-
-                if(regexUtil.isCheckEmailId(contacts.getEmail()))
+                if(regexUtil.isStartWithCapitalLatter(contacts.getLastnames()))
                 {
-                    String mobileNumber = contacts.getPhoneNumber()+"";
-                    if(regexUtil.isCheckMobileNumber(mobileNumber))
+
+                    if(regexUtil.isCheckEmailId(contacts.getEmail()))
                     {
+                        String mobileNumber = contacts.getPhoneNumber()+"";
+                        if(regexUtil.isCheckMobileNumber(mobileNumber))
+                        {
 
-                        linkedList.add(contacts);
-                        System.out.println();
-                        System.out.println("-------------------------------------------");
-                        System.out.println("Contact Added Succesfully in Address Book");
-                        System.out.println("-------------------------------------------");
+                            linkedList.add(contacts);
+                            System.out.println();
+                            System.out.println("-------------------------------------------");
+                            System.out.println("Contact Added Succesfully in Address Book");
+                            System.out.println("-------------------------------------------");
 
+                        }
                     }
+
                 }
             }
             else
@@ -166,6 +172,93 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
                 System.out.println("Delete contact Successful");
             }
 
+        }
+    }
+    private static boolean displyByState(String input)
+    {
+        boolean flag = true;
+        for(int counter=0; counter<linkedList.size();counter++)
+        {
+            if((linkedList.get(counter).getState()).equals(input))
+            {
+                System.out.println();
+                System.out.println("****************************************************");
+                System.out.println(" First name :"+linkedList.get(counter).getFirstName());
+                System.out.println(" Last name  :"+linkedList.get(counter).getLastnames());
+                System.out.println(" Address    :"+linkedList.get(counter).getAddress());
+                System.out.println(" City       :"+linkedList.get(counter).getCity());
+                System.out.println(" State      :"+linkedList.get(counter).getState());
+                System.out.println(" Email ID   :"+linkedList.get(counter).getEmail());
+                System.out.println(" Zip        :"+linkedList.get(counter).getZip());
+                System.out.println(" Phone No   :"+linkedList.get(counter).getPhoneNumber());
+                System.out.println("****************************************************");
+                flag = false;
+            }
+
+        }
+        return flag;
+    }
+    private static boolean displyByCity(String input)
+    {
+        boolean flag =true;
+        for(int counter=0; counter<linkedList.size();counter++)
+        {
+            if((linkedList.get(counter).getCity()).equals(input))
+            {
+                System.out.println();
+                System.out.println("********************************************************");
+                System.out.println(" First name :"+linkedList.get(counter).getFirstName());
+                System.out.println(" Last name  :"+linkedList.get(counter).getLastnames());
+                System.out.println(" Address    :"+linkedList.get(counter).getAddress());
+                System.out.println(" City       :"+linkedList.get(counter).getCity());
+                System.out.println(" State      :"+linkedList.get(counter).getState());
+                System.out.println(" Email ID   :"+linkedList.get(counter).getEmail());
+                System.out.println(" Zip        :"+linkedList.get(counter).getZip());
+                System.out.println(" Phone No   :"+linkedList.get(counter).getPhoneNumber());
+
+                System.out.println("********************************************************");
+                System.out.println();
+                flag = false;
+            }
+
+        }
+        return flag;
+    }
+    public void searchPersonBystateOrCity()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter state or city that you want to search person information (State / City)");
+        String choice = scan.next();
+        if(choice.equals("State")||(choice.equals("state")))
+        {
+            System.out.println("Enter state that you want search person information :");
+            choice = scan.next();
+            if(displyByState(choice))
+            {
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("you give the State name to search that is not in address book ");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            }
+        }
+        else if((choice.equals("City"))||(choice.equals("city")))
+        {
+            System.out.println("Enter city that you want search person information :");
+            choice = scan.next();
+            if(displyByCity(choice))
+            {
+                System.out.println();
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("you give the State name to search that is not in address book ");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            }
+
+        }
+        else
+        {
+            System.out.println("Enter the valid choice");
         }
     }
 
