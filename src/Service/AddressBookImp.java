@@ -6,6 +6,7 @@ import Utility.RegexUtil;
 import javax.script.ScriptContext;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class AddressBookImp extends AddressBookEdit implements iAddressBook
@@ -175,83 +176,115 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
 
         }
     }
-    private static boolean displyByState(String input)
+    private static void displyByState(String input)
     {
-        boolean flag = true;
-        for(int counter=0; counter<linkedList.size();counter++)
-        {
-            if((linkedList.get(counter).getState()).equals(input))
-            {
-                System.out.println();
-                System.out.println("****************************************************");
-                System.out.println(" First name :"+linkedList.get(counter).getFirstName());
-                System.out.println(" Last name  :"+linkedList.get(counter).getLastnames());
-                System.out.println(" Address    :"+linkedList.get(counter).getAddress());
-                System.out.println(" City       :"+linkedList.get(counter).getCity());
-                System.out.println(" State      :"+linkedList.get(counter).getState());
-                System.out.println(" Email ID   :"+linkedList.get(counter).getEmail());
-                System.out.println(" Zip        :"+linkedList.get(counter).getZip());
-                System.out.println(" Phone No   :"+linkedList.get(counter).getPhoneNumber());
-                System.out.println("****************************************************");
-                flag = false;
-            }
+         linkedList.stream()
+                 .filter(n->n.getState().equals(input))
+                 .forEach(n-> System.out.println("First name "+n.getFirstName()+
+                         "Last name "+n.getLastnames()+
+                    "Address "+n.getAddress()+
+                    "City "+n.getCity()+
+                    "State"+n.getState()+
+                         "Email ID"+n.getEmail()+
+                         " Zip  "+n.getZip()+
+                         "Phone No "+n.getPhoneNumber()
+                         ));
 
-        }
-        return flag;
+//        boolean flag = true;
+//        for(int counter=0; counter<linkedList.size();counter++)
+//        {
+//            if((linkedList.get(counter).getState()).equals(input))
+//            {
+//                System.out.println();
+//                System.out.println("****************************************************");
+//                System.out.println(" First name :"+linkedList.get(counter).getFirstName());
+//                System.out.println(" Last name  :"+linkedList.get(counter).getLastnames());
+//                System.out.println(" Address    :"+linkedList.get(counter).getAddress());
+//                System.out.println(" City       :"+linkedList.get(counter).getCity());
+//                System.out.println(" State      :"+linkedList.get(counter).getState());
+//                System.out.println(" Email ID   :"+linkedList.get(counter).getEmail());
+//                System.out.println(" Zip        :"+linkedList.get(counter).getZip());
+//                System.out.println(" Phone No   :"+linkedList.get(counter).getPhoneNumber());
+//                System.out.println("****************************************************");
+//                flag = false;
+//            }
+//
+//        }
+//        return flag;
     }
-    private static boolean displyByCity(String input)
+    private static void displyByCity(String input)
     {
-        boolean flag =true;
-        for(int counter=0; counter<linkedList.size();counter++)
-        {
-            if((linkedList.get(counter).getCity()).equals(input))
-            {
-                System.out.println();
-                System.out.println("********************************************************");
-                System.out.println(" First name :"+linkedList.get(counter).getFirstName());
-                System.out.println(" Last name  :"+linkedList.get(counter).getLastnames());
-                System.out.println(" Address    :"+linkedList.get(counter).getAddress());
-                System.out.println(" City       :"+linkedList.get(counter).getCity());
-                System.out.println(" State      :"+linkedList.get(counter).getState());
-                System.out.println(" Email ID   :"+linkedList.get(counter).getEmail());
-                System.out.println(" Zip        :"+linkedList.get(counter).getZip());
-                System.out.println(" Phone No   :"+linkedList.get(counter).getPhoneNumber());
-
-                System.out.println("********************************************************");
-                System.out.println();
-                flag = false;
-            }
-
-        }
-        return flag;
+        linkedList.stream()
+                .filter(n->n.getCity().equals(input))
+                .forEach(n-> System.out.println("First name "+n.getFirstName()+
+                        "Last name "+n.getLastnames()+
+                        "Address "+n.getAddress()+
+                        "City "+n.getCity()+
+                        "State"+n.getState()+
+                        "Email ID"+n.getEmail()+
+                        " Zip  "+n.getZip()+
+                        "Phone No "+n.getPhoneNumber()
+                ));
+//        boolean flag =true;
+//        for(int counter=0; counter<linkedList.size();counter++)
+//        {
+//            if((linkedList.get(counter).getCity()).equals(input))
+//            {
+//                System.out.println();
+//                System.out.println("********************************************************");
+//                System.out.println(" First name :"+linkedList.get(counter).getFirstName());
+//                System.out.println(" Last name  :"+linkedList.get(counter).getLastnames());
+//                System.out.println(" Address    :"+linkedList.get(counter).getAddress());
+//                System.out.println(" City       :"+linkedList.get(counter).getCity());
+//                System.out.println(" State      :"+linkedList.get(counter).getState());
+//                System.out.println(" Email ID   :"+linkedList.get(counter).getEmail());
+//                System.out.println(" Zip        :"+linkedList.get(counter).getZip());
+//                System.out.println(" Phone No   :"+linkedList.get(counter).getPhoneNumber());
+//
+//                System.out.println("********************************************************");
+//                System.out.println();
+//                flag = false;
+//            }
+//
+//        }
+//        return flag;
     }
-    private static boolean searchByState(String input)
+    private static void searchByState(String input)
     {
-        boolean flag = true;
-        for(int counter=0; counter<linkedList.size();counter++)
-        {
-            if((linkedList.get(counter).getState()).equals(input))
-            {
-                  flag = false;
-                  break;
-            }
+         linkedList.stream()
+                 .filter(n->n.getState().equals(input))
+                 .forEach(n-> System.out.println(n.getFirstName()));
 
-        }
-        return flag;
+
+//
+//        for(int counter=0; counter<linkedList.size();counter++)
+//        {
+//            if((linkedList.get(counter).getState()).equals(input))
+//            {
+//                  flag = false;
+//                  break;
+//            }
+//
+//        }
+//        return flag;
     }
-    private static boolean searchByCity(String input)
+    private static void searchByCity(String input)
     {
-        boolean flag =true;
-        for(int counter=0; counter<linkedList.size();counter++)
-        {
-            if((linkedList.get(counter).getCity()).equals(input))
-            {
-                flag = false;
-                break;
-            }
+        linkedList.stream()
+                .filter(n->n.getCity().equals(input))
+                .forEach(n-> System.out.println(n.getFirstName()));
 
-        }
-        return flag;
+//        boolean flag =true;
+//        for(int counter=0; counter<linkedList.size();counter++)
+//        {
+//            if((linkedList.get(counter).getCity()).equals(input))
+//            {
+//                flag = false;
+//                break;
+//            }
+//
+//        }
+//        return flag;
     }
     public void searchPersonBystateOrCity()
     {
@@ -263,45 +296,47 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
         {
             System.out.println("Enter state that you want search person information :");
             choice = scan.next();
-            if(searchByState(choice))
-            {
-                System.out.println();
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.out.println("you give the State name to search that person is not present in address book ");
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-            }
-            else
-            {
-                System.out.println();
-
-                System.out.println("---------------------------------------------------------------");
-                System.out.println("you give the State name to search that person present in address book ");
-                System.out.println("---------------------------------------------------------------");
-
-            }
+           searchByState(choice);
+//            if()
+//            {
+//                System.out.println();
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                System.out.println("you give the State name to search that person is not present in address book ");
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//
+//            }
+//            else
+//            {
+//                System.out.println();
+//
+//                System.out.println("---------------------------------------------------------------");
+//                System.out.println("you give the State name to search that person present in address book ");
+//                System.out.println("---------------------------------------------------------------");
+//
+//            }
 
         }
         else if((choice.equals("City"))||(choice.equals("city")))
         {
             System.out.println("Enter city that you want search person information :");
             choice = scan.next();
-            if(searchByCity(choice))
-            {
-                System.out.println();
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.out.println("you give the city name to search that person  is not present in address book ");
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            }
-            else
-            {
-                System.out.println();
-
-                System.out.println("---------------------------------------------------------------");
-                System.out.println("you give the city name to search that person present in address book ");
-                System.out.println("---------------------------------------------------------------");
-
-            }
+            searchByCity(choice);
+//            if()
+//            {
+//                System.out.println();
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                System.out.println("you give the city name to search that person  is not present in address book ");
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            }
+//            else
+//            {
+//                System.out.println();
+//
+//                System.out.println("---------------------------------------------------------------");
+//                System.out.println("you give the city name to search that person present in address book ");
+//                System.out.println("---------------------------------------------------------------");
+//
+//            }
 
         }
         else
@@ -319,26 +354,28 @@ public class AddressBookImp extends AddressBookEdit implements iAddressBook
         {
             System.out.println("Enter state that you want search person information :");
             choice = scan.next();
-            if(displyByState(choice))
-            {
-                System.out.println();
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.out.println("you give the State name to view that is not in address book ");
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-            }
+            displyByState(choice);
+//            if()
+//            {
+//                System.out.println();
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                System.out.println("you give the State name to view that is not in address book ");
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//
+//            }
         }
         else if((choice.equals("City"))||(choice.equals("city")))
         {
             System.out.println("Enter city that you want search person information :");
             choice = scan.next();
-            if(displyByCity(choice))
-            {
-                System.out.println();
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.out.println("you give the State name to view that is not in address book ");
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            }
+            displyByCity(choice);
+//            if()
+//            {
+//                System.out.println();
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                System.out.println("you give the State name to view that is not in address book ");
+//                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            }
 
         }
         else
